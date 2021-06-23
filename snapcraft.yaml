@@ -1,0 +1,24 @@
+name: codesearch-cli
+base: core18 # the base snap is the execution environment for this snap
+adopt-info: codesearch-cli
+summary: Debian Code Search CLI tool
+description: |
+  Command-line tool for codesearch.debian.net
+
+grade: devel
+confinement: strict
+
+apps:
+  codesearch-cli:
+    command: codesearch_cli.py
+
+parts:
+  codesearch-cli:
+    plugin: dump
+    source: https://salsa.debian.org/debian/codesearch-cli
+    source-type: git
+    stage-packages:
+      - python3-websocket
+    override-build: |
+      snapcraftctl build
+      snapcraftctl set-version "$(git describe ---all --long | sed 's|heads/||')"
