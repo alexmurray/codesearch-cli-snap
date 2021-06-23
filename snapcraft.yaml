@@ -11,6 +11,10 @@ confinement: strict
 apps:
   codesearch-cli:
     command: codesearch_cli.py
+    environment:
+      PYTHONPATH: /snap/codesearch-cli/current/dcs_python_client
+    plugs:
+      - network
 
 parts:
   codesearch-cli:
@@ -18,7 +22,8 @@ parts:
     source: https://salsa.debian.org/debian/codesearch-cli
     source-type: git
     stage-packages:
+      - python3-requests
       - python3-websocket
     override-build: |
       snapcraftctl build
-      snapcraftctl set-version "$(git describe ---all --long | sed 's|heads/||')"
+      snapcraftctl set-version "$(git describe --all --long | sed 's|heads/||')"
