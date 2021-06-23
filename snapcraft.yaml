@@ -5,7 +5,7 @@ summary: Debian Code Search CLI tool
 description: |
   Command-line tool for codesearch.debian.net
 
-grade: devel
+grade: stable
 confinement: strict
 
 apps:
