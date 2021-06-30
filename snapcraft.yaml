@@ -13,6 +13,7 @@ apps:
     command: codesearch_cli.py
     environment:
       PYTHONPATH: /snap/codesearch-cli/current/dcs_python_client
+      PYTHONIOENCODING: utf-8
     plugs:
       - network
 
