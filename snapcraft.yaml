@@ -1,5 +1,5 @@
 name: codesearch-cli
-base: core18 # the base snap is the execution environment for this snap
+base: core20
 adopt-info: codesearch-cli
 summary: Debian Code Search CLI tool
 description: |
@@ -8,12 +8,13 @@ description: |
 grade: stable
 confinement: strict
 
+environment:
+  PYTHONPATH: $SNAP/dcs_python_client:$SNAP/usr/lib/python3/dist-packages
+  PYTHONIOENCODING: utf-8
+
 apps:
   codesearch-cli:
     command: codesearch_cli.py
-    environment:
-      PYTHONPATH: /snap/codesearch-cli/current/dcs_python_client
-      PYTHONIOENCODING: utf-8
     plugs:
       - network
 
