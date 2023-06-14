@@ -27,5 +27,6 @@ parts:
       - python3-requests
       - python3-websocket
     override-build: |
+      patch -p1 < $SNAPCRAFT_PROJECT_DIR/0001-HACK-support-setting-host-URI-via-an-environment-var.patch
       snapcraftctl build
       snapcraftctl set-version "$(git describe --all --long | sed 's|heads/||')"

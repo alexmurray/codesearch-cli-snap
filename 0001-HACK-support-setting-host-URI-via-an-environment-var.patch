@@ -1,0 +1,38 @@
+From 0911718c959d0cde5a7ec1d4df9e8d5da2eb400d Mon Sep 17 00:00:00 2001
+From: Alex Murray <alex.murray@canonical.com>
+Date: Wed, 14 Jun 2023 13:49:42 +0930
+Subject: [PATCH] HACK: support setting host URI via an environment variable
+
+Since we can't easily patch the swagger source and regenerate the code, instead
+hack the code to lookup the host server URI via the DCS_API_HOST_URI environment
+variable with a default of the standard codesearch.debian.net server.
+
+Signed-off-by: Alex Murray <alex.murray@canonical.com>
+---
+ dcs_python_client/swagger_client/configuration.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/dcs_python_client/swagger_client/configuration.py b/dcs_python_client/swagger_client/configuration.py
+index ee4de14..5e67c12 100644
+--- a/dcs_python_client/swagger_client/configuration.py
++++ b/dcs_python_client/swagger_client/configuration.py
+@@ -16,6 +16,7 @@ from __future__ import absolute_import
+ import copy
+ import logging
+ import multiprocessing
++import os
+ import sys
+ import urllib3
+ 
+@@ -40,7 +41,7 @@ class Configuration(object):
+             return
+ 
+         # Default Base url
+-        self.host = "https://codesearch.debian.net/api/v1"
++        self.host = os.getenv("DCS_API_HOST_URI", "https://codesearch.debian.net/api/v1")
+         # Temp file folder for downloading files
+         self.temp_folder_path = None
+ 
+-- 
+2.39.2
+
