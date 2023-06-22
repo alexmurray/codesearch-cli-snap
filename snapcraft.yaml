@@ -23,10 +23,14 @@ parts:
     plugin: dump
     source: https://salsa.debian.org/debian/codesearch-cli
     source-type: git
+    build-packages:
+      - wget
     stage-packages:
       - python3-requests
       - python3-websocket
     override-build: |
       patch -p1 < $SNAPCRAFT_PROJECT_DIR/0001-HACK-support-setting-host-URI-via-an-environment-var.patch
+      # also add proposed patch to upstream to add support for specifying per-package and the mode (literal vs regexp)
+      wget -O - https://salsa.debian.org/debian/codesearch-cli/-/merge_requests/2.patch | patch -p1
       snapcraftctl build
       snapcraftctl set-version "$(git describe --all --long | sed 's|heads/||')"
