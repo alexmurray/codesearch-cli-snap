@@ -9,13 +9,13 @@ variable with a default of the standard codesearch.debian.net server.
 
 Signed-off-by: Alex Murray <alex.murray@canonical.com>
 ---
- dcs_python_client/swagger_client/configuration.py | 3 ++-
+ debian_codesearch_client/swagger_client/configuration.py | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/dcs_python_client/swagger_client/configuration.py b/dcs_python_client/swagger_client/configuration.py
+diff --git a/debian_codesearch_client/swagger_client/configuration.py b/debian_codesearch_client/swagger_client/configuration.py
 index ee4de14..5e67c12 100644
---- a/dcs_python_client/swagger_client/configuration.py
-+++ b/dcs_python_client/swagger_client/configuration.py
+--- a/debian_codesearch_client/swagger_client/configuration.py
++++ b/debian_codesearch_client/swagger_client/configuration.py
 @@ -16,6 +16,7 @@ from __future__ import absolute_import
  import copy
  import logging

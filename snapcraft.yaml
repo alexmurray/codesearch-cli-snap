@@ -9,7 +9,7 @@ grade: stable
 confinement: strict
 
 environment:
-  PYTHONPATH: $SNAP/dcs_python_client:$SNAP/usr/lib/python3/dist-packages
+  PYTHONPATH: $SNAP/debian_codesearch_client:$SNAP/usr/lib/python3/dist-packages
   PYTHONIOENCODING: utf-8
 
 apps:
