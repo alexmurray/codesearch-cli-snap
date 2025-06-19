@@ -1,5 +1,5 @@
 name: codesearch-cli
-base: core20
+base: core24
 adopt-info: codesearch-cli
 summary: Debian Code Search CLI tool
 description: |
@@ -14,13 +14,13 @@ environment:
 
 apps:
   codesearch-cli:
-    command: codesearch_cli.py
+    command: bin/codesearch
     plugs:
       - network
 
 parts:
   codesearch-cli:
-    plugin: dump
+    plugin: python
     source: https://salsa.debian.org/debian/codesearch-cli
     source-type: git
     stage-packages:
