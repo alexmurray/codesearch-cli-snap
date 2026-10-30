@@ -1,5 +1,5 @@
 name: codesearch-cli
-base: core24
+base: core26
 adopt-info: codesearch-cli
 summary: Debian Code Search CLI tool
 description: |
@@ -24,9 +24,11 @@ parts:
     source: https://salsa.debian.org/debian/codesearch-cli
     source-type: git
     stage-packages:
+      - python3-minimal
       - python3-requests
+      - python3-venv
       - python3-websocket
     override-build: |
-      patch -p1 < $SNAPCRAFT_PROJECT_DIR/0001-HACK-support-setting-host-URI-via-an-environment-var.patch
-      snapcraftctl build
-      snapcraftctl set-version "$(git describe --all --long | sed 's|heads/||')"
+      patch -p1 < $CRAFT_PROJECT_DIR/0001-HACK-support-setting-host-URI-via-an-environment-var.patch
+      craftctl default
+      craftctl set version=$(python3 -c "import tomllib; f = open('pyproject.toml', 'rb'); d = tomllib.load(f); print(d['tool']['poetry']['version'])")
